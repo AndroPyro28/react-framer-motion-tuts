@@ -2,33 +2,68 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 const Home = () => {
+
+  const buttonVariants = {
+
+    hover: {
+      scale:1.1,
+      textShadow:"0px 0px 8px rgb(255,255,255)",
+      boxShadow:"0px 0px 8px rgb(255,255,255)",
+      transition: {
+        yoyo: Infinity,
+        duration:0.3
+      }
+    }
+  }
+
+  const titleVariants = {
+    dragConstraints: {
+      top:"5px",
+      left:"5px",
+      right:"5px",
+      bottom:"5px",
+    }
+  }
+
+  const containerVariants = {
+    initial: {
+      x: "-100vw"
+    },
+    animate: {
+      x: 0
+    },
+    exit: {
+      x:"100vw",
+      transition:{ 
+        ease:"easeInOut"
+      }
+    }
+  }
+
   return (
     <motion.div className="home container"
-      animate={{x:0}}
-      initial={{x:"-100vw"}}
-      // drag
-      // whileDrag={{ scale: 5, rotate: 360 }}
-      // dragConstraints={{ left: 100, top: 100, right: 100, bottom: 100 }}
-      // transition={{ repeat: Infinity, duration: 1 }}
-      
+    variants={containerVariants}
+      animate="animate"
+      initial="initial"
+      exit="exit"
     >
-      <h2 >
+      <motion.h2 
+        drag
+        variants={titleVariants}
+        dragConstraints={{
+          top:5,
+          left:5,
+          right:5,
+          bottom:5,
+        }}
+      >
         Welcome to Pizza Joint
-      </h2>
+      </motion.h2>
       <Link to="/base">
         <motion.button
-        whileHover={{
-          scale:1.1,
-          textShadow:"0px 0px 8px rgb(255,255,255)",
-          boxShadow:"0px 0px 8px rgb(255,255,255)",
-        }}
-
-        // drag 
-        // whileDrag={{
-        //   scale:1.1
-        // }}
-
-
+        variants={buttonVariants}
+        whileHover={"hover"}
+        
         >
           Create Your Pizza
         </motion.button>

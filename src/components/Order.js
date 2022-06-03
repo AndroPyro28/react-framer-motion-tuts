@@ -1,7 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Order = ({ pizza }) => {
+
+  const [showTitle, setShowTitle] = useState(true);
+
+  setTimeout(() => setShowTitle(false), 4000)
 
   const variantsContainer = {
     initial: {
@@ -15,6 +19,12 @@ const Order = ({ pizza }) => {
         duration:0.5
       },
     },
+    exit: {
+      x:"100vw",
+      transition:{ 
+        ease:"easeInOut"
+      }
+    }
   };
 
   const childVariants = {
@@ -33,8 +43,22 @@ const Order = ({ pizza }) => {
       variants={variantsContainer}
       animate="animate"
       initial="initial"
+      exit="exit"
     >
-      <h2>Thank you for your order :)</h2>
+      <AnimatePresence>
+      {
+        showTitle && 
+            <motion.h2
+            exit={{y:-150, x:100, opacity:0}}
+            transition={{
+              duration:1.5,
+              when:"afterParent"
+            }}
+            >Thank you for your order :)</motion.h2>
+          
+      }
+      </AnimatePresence>
+      
       
       <motion.div 
        variants={childVariants}
