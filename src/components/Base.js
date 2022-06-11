@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const Base = ({ addBase, pizza }) => {
+const Base = ({ addBase, pizza, setShowModal }) => {
   const bases = ["Classic", "Thin & Crispy", "Thick Crust"];
 
   const variantsContainer = {
@@ -51,6 +51,10 @@ const Base = ({ addBase, pizza }) => {
       },
     },
   };
+  
+  useEffect(() => {
+    setShowModal(false)
+  }, [])
 
   return (
     <motion.div

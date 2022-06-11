@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Order = ({ pizza }) => {
+const Order = ({ pizza, setShowModal }) => {
 
   const [showTitle, setShowTitle] = useState(true);
 
@@ -36,6 +36,10 @@ const Order = ({ pizza }) => {
       }
     },
   }
+
+  useEffect(() => {
+    setTimeout(_ => setShowModal(true), 7000)
+  }, [setShowModal])
 
 
   return (
