@@ -7,6 +7,9 @@ const Header = () => {
       <motion.div className="logo"
         initial={{opacity:0}}
         animate={{opacity:1}}
+        drag
+        dragConstraints={{left:0, right: 0, top:0, bottom: 0}}
+        dragElastic={0.5}
         transition={{
           delay:0.5,
           duration:0.5
